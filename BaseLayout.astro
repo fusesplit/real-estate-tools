@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+// ... rest of your props
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+    <Navbar />
+
+    <!-- Main Container with Optional Right Sidebar on Large Screens -->
+    <div class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 grid grid-cols-1 xl:grid-cols-12 gap-8">
+      
+      <!-- Primary Calculator Content (9 Columns) -->
+      <main class="xl:col-span-9 w-full">
+        <slot />
+      </main>
+
+      <!-- Right Sticky Sidebar (3 Columns - Desktop Only) -->
+      <aside class="hidden xl:block xl:col-span-3 space-y-6">
+        <div class="sticky top-24 space-y-6">
+          
+          <!-- Sidebar Ad Slot -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 text-center">
+            <span class="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Advertisement</span>
+            <div class="w-full h-[250px] bg-slate-100 border border-dashed border-slate-300 rounded-lg flex items-center justify-center text-slate-400 text-xs">
+              300x250 Sidebar Ad
+            </div>
+          </div>
+
+          <!-- Quick Internal Links Widget (Boosts SEO & Pageviews) -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+            <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider mb-3">
+              Popular Calculators
+            </h3>
+            <ul class="space-y-2.5 text-sm text-slate-600">
+              <li><a href="/" class="hover:text-blue-600 flex items-center justify-between"><span>Mortgage Calculator</span><span>→</span></a></li>
+              <li><a href="/auto-loan" class="hover:text-blue-600 flex items-center justify-between"><span>Auto Loan EMI</span><span>→</span></a></li>
+              <li><a href="/compound-interest" class="hover:text-blue-600 flex items-center justify-between"><span>Compound Interest</span><span>→</span></a></li>
+              <li><a href="/debt-payoff" class="hover:text-blue-600 flex items-center justify-between"><span>Debt Payoff Plan</span><span>→</span></a></li>
+              <li><a href="/salary-to-hourly" class="hover:text-blue-600 flex items-center justify-between"><span>Salary to Hourly</span><span>→</span></a></li>
+              <li><a href="/retirement-calculator" class="hover:text-blue-600 flex items-center justify-between"><span>Retirement Planner</span><span>→</span></a></li>
+            </ul>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+
+    <footer class="bg-white border-t border-slate-200 mt-16 py-8 text-sm text-slate-500">
+      <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p>© 2026 CalcYourLoan.com For educational purposes only, not financial advice.</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href="/about" class="px-1 hover:text-blue-600 transition">About</a>
+          <span class="text-slate-300 select-none"> | </span>
+          <a href="/privacy-policy" class="px-1 hover:text-blue-600 transition">Privacy Policy</a>
+          <span class="text-slate-300 select-none"> | </span>
+          <a href="/terms" class="px-1 hover:text-blue-600 transition">Terms</a>
+          <span class="text-slate-300 select-none"> | </span>
+          <a href="/contact" class="px-1 hover:text-blue-600 transition">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
