@@ -1,0 +1,13 @@
+astro
+---
+interface Props {
+  label?: string;
+}
+const { label = "Advertisement" } = Astro.props;
+---
+<div class="my-6 w-full flex flex-col items-center justify-center">
+  <span class="text-[10px] uppercase tracking-widest text-slate-400 mb-1">{label}</span>
+  <div class="w-full max-w-3xl h-24 bg-slate-100 border border-dashed border-slate-300 rounded-lg flex items-center justify-center text-slate-400 text-sm">
+    Google AdSense Responsive Ad Slot
+  </div>
+</div>

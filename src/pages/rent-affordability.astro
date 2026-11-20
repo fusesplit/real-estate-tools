@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdSlot from '../components/AdSlot.astro';
+---
+
+<BaseLayout
+  title="Free Rent Affordability Calculator (30% Income Rule) | LandlordFormKit"
+  description="Find out how much rent you can afford based on your annual salary and monthly debts using the 30% rule and landlord 40x income rule."
+>
+  <div class="text-center max-w-3xl mx-auto mb-6">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
+      Free Rent Affordability Calculator
+    </h1>
+    <p class="text-slate-600 text-base md:text-lg">
+      Calculate your ideal monthly rent budget using the 30% gross income rule and landlord screening standards.
+    </p>
+  </div>
+
+  <AdSlot label="Sponsored" />
+
+  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="lg:col-span-6 space-y-5">
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Currency</label>
+        <select id="currency" class="w-full rounded-lg border-slate-300 border p-2.5 text-slate-800 outline-none">
+          <option value="$" selected>USD ($)</option>
+          <option value="£">GBP (£)</option>
+          <option value="€">EUR (€)</option>
+          <option value="CA$">CAD (CA$)</option>
+          <option value="A$">AUD (A$)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Annual Gross Income (Before Taxes)</label>
+        <input type="number" id="annualIncome" value="72000" step="1000" class="w-full rounded-lg border-slate-300 border p-2.5" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Monthly Debt Payments (Car, Student Loans, Cards)</label>
+        <input type="number" id="monthlyDebt" value="350" step="50" class="w-full rounded-lg border-slate-300 border p-2.5" />
+      </div>
+    </div>
+
+    <div class="lg:col-span-6 bg-slate-50 rounded-xl p-6 border border-slate-200 flex flex-col justify-between">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Recommended Max Rent (30% Rule)</span>
+        <div id="recommendedRentDisplay" class="text-4xl md:text-5xl font-extrabold text-slate-900 mt-1 mb-6">
+          $1,800.00 / mo
+        </div>
+
+        <div class="space-y-2.5 border-t border-slate-200 pt-4 text-sm">
+          <div class="flex justify-between">
+            <span class="text-slate-600">Conservative Budget (25% Rule):</span>
+            <strong id="conservativeDisplay" class="text-emerald-600">$1,500.00</strong>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Max Stretch Limit (36% DTI):</span>
+            <strong id="maxStretchDisplay" class="text-slate-900">$1,810.00</strong>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Gross Monthly Income:</span>
+            <strong id="grossMonthlyDisplay" class="text-slate-900">$6,000.00</strong>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">40x Rule Qualification Income:</span>
+            <strong id="landlord40xDisplay" class="text-slate-900">$72,000.00</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <button id="downloadPdfBtn"
+          class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-sm transition cursor-pointer">
+          Download Rent Budget PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <AdSlot label="Sponsored" />
+</BaseLayout>
+
+<script src="../scripts/rentAffordability.js"></script>

@@ -1,0 +1,21 @@
+---
+const tools = [
+  { name: "Mortgage Calculator", desc: "Monthly payment & PDF amortization schedule.", url: "/" },
+  { name: "Auto Loan Calculator", desc: "Car payment with trade-in & sales tax.", url: "/auto-loan" },
+  { name: "Compound Interest", desc: "Project long-term savings & investment growth.", url: "/compound-interest" },
+  { name: "Debt Payoff Planner", desc: "Find your exact credit card debt-free date.", url: "/debt-payoff" },
+  { name: "Salary to Hourly", desc: "Convert annual pay into hourly & weekly rates.", url: "/salary-to-hourly" },
+  { name: "Retirement Planner", desc: "Estimate your 401(k) nest egg & 4% income.", url: "/retirement-calculator" },
+];
+---
+<section class="mt-12">
+  <h2 class="text-xl font-bold text-slate-900 mb-4">Explore More Free Financial Calculators</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {tools.map((tool) => (
+      <a href={tool.url} class="tool-card bg-white p-5 rounded-xl border border-slate-200 block">
+        <h3 class="font-bold text-blue-600 mb-1">{tool.name}</h3>
+        <p class="text-xs text-slate-600">{tool.desc}</p>
+      </a>
+    ))}
+  </div>
+</section>

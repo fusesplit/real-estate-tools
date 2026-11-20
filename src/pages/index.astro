@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdSlot from '../components/AdSlot.astro';
+---
+
+<BaseLayout
+  title="Free Rent Receipt Generator (Instant PDF Download) | LandlordDocs"
+  description="Create and download official monthly rent receipts as printable PDFs for landlords and tenants. 100% free with no signup required."
+>
+  <div class="text-center max-w-3xl mx-auto mb-6">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
+      Free Monthly Rent Receipt Generator
+    </h1>
+    <p class="text-slate-600 text-base md:text-lg">
+      Fill in tenant, landlord, and payment details below to generate a printable PDF rent receipt in seconds.
+    </p>
+  </div>
+
+  <AdSlot label="Sponsored" />
+
+  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- Form Inputs -->
+    <div class="lg:col-span-7 space-y-4">
+      <div class="grid grid-cols-3 gap-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Currency</label>
+          <select id="currency" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm">
+            <option value="$" selected>USD ($)</option>
+            <option value="£">GBP (£)</option>
+            <option value="€">EUR (€)</option>
+            <option value="CA$">CAD (CA$)</option>
+            <option value="A$">AUD (A$)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Receipt #</label>
+          <input type="text" id="receiptNo" value="REC-1042" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Payment Date</label>
+          <input type="date" id="paymentDate" value="2026-11-01" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Tenant Full Name</label>
+          <input type="text" id="tenantName" placeholder="e.g. Sarah Jenkins" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Landlord / Company Name</label>
+          <input type="text" id="landlordName" placeholder="e.g. Oakwood Properties LLC" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-700 mb-1">Rental Property Address</label>
+        <input type="text" id="propertyAddress" placeholder="e.g. 742 Evergreen Terrace, Apt 4B" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm" />
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Rent Period From</label>
+          <input type="date" id="periodFrom" value="2026-11-01" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Rent Period To</label>
+          <input type="date" id="periodTo" value="2026-11-30" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Rent Amount</label>
+          <input type="number" id="rentAmount" value="1850" step="50" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Late Fee (Optional)</label>
+          <input type="number" id="lateFee" value="0" step="10" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Payment Method</label>
+          <select id="paymentMethod" class="w-full rounded-lg border-slate-300 border p-2.5 text-sm">
+            <option value="Bank Transfer / ACH" selected>Bank Transfer</option>
+            <option value="Zelle / Venmo">Zelle / Venmo</option>
+            <option value="Check">Check</option>
+            <option value="Cash">Cash</option>
+            <option value="Credit / Debit Card">Card</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Summary & PDF Download -->
+    <div class="lg:col-span-5 bg-slate-50 rounded-xl p-6 border border-slate-200 flex flex-col justify-between">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Total Rent Paid</span>
+        <div id="totalPaidDisplay" class="text-4xl font-extrabold text-slate-900 mt-1 mb-5">
+          $1,850.00
+        </div>
+
+        <div class="space-y-2.5 border-t border-slate-200 pt-4 text-xs text-slate-600">
+          <div class="flex justify-between"><span>Tenant:</span><strong id="previewTenant" class="text-slate-900">Tenant Name</strong></div>
+          <div class="flex justify-between"><span>Landlord:</span><strong id="previewLandlord" class="text-slate-900">Landlord Name</strong></div>
+          <div class="flex justify-between"><span>Property:</span><strong id="previewAddress" class="text-slate-900">Property Address</strong></div>
+          <div class="flex justify-between"><span>Method:</span><strong id="previewMethod" class="text-slate-900">Bank Transfer / ACH</strong></div>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <button id="downloadPdfBtn"
+          class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-sm transition cursor-pointer">
+          Download Official PDF Receipt
+        </button>
+        <p class="text-xs text-center text-slate-500 mt-2">
+          Includes Signature Lines • 100% Free • No Signup
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <AdSlot label="Sponsored" />
+
+  <article class="bg-white rounded-2xl border border-slate-200 p-6 md:p-10 mt-8 prose max-w-none text-slate-700 space-y-6">
+    <h2 class="text-2xl font-bold text-slate-900">Why Landlords and Tenants Need Official Rent Receipts</h2>
+    <p>
+      Providing a written rent receipt protects both landlords and tenants by creating an indisputable record of payment dates, amounts, and rental periods. Tenants frequently need rent receipts to qualify for state renter tax credits, prove on-time payment history when applying for a mortgage, or document cash rent payments.
+    </p>
+  </article>
+</BaseLayout>
+
+<script src="../scripts/rentReceipt.js"></script>
